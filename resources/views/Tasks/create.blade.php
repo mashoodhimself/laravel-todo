@@ -40,20 +40,12 @@
 
                                 <div class="col-md-12 d-flex">
 
-                                    <div class="form-group">
-                                        <label for="low">Low</label>
-                                        <input type="radio" id="low" name="priority" value="3">
-                                    </div>
-
-                                    <div class="form-group" style="margin-left: 10px;">
-                                        <label for="medium">Medium</label>
-                                        <input type="radio" id="medium" name="priority" value="2">
-                                    </div>
-
-                                    <div class="form-group" style="margin-left: 10px;">
-                                        <label for="high">High</label>
-                                        <input type="radio" id="high" name="priority" value="1">
-                                    </div>
+                                    <select name="priority" id="priority" class="form-control">
+                                        <option selected disabled>Select priority</option>
+                                        <option value="1">High</option>
+                                        <option value="2">Medium</option>
+                                        <option value="3">Low</option>
+                                    </select>
 
                                 </div>
                             </div>

@@ -10,19 +10,18 @@ class TaskController extends Controller
 {
     public function index()
     {
-        return view('tasks', [
-            "tasks" => Task::filter(request()->only(['search', 'date']))->with('user')->orderBy("priority")->get(),
-            'allCount' => Task::count(),
-            'progressCount' => Task::where('status', 0)->count(),
-            'completeCount' => Task::where('status', 1)->count(),
-            'trashCount' => Task::where('status', 2)->count()
+        return view('tasks.show', [
+
+            "tasks" => Task::filter(request(['search', 'date', 'progress', 'completed', 'trashed']))
+                            ->with('user')
+                            ->orderBy("priority")
+                            ->get()
         ]);
     }
 
-
     public function create()
     {
-        return view('add-task');
+        return view('tasks.create');
     }
 
     public function store(Request $request)
@@ -42,14 +41,14 @@ class TaskController extends Controller
 
     public function task_by_author($user)
     {
-        return view('home', [
+        return view('tasks.show', [
             "tasks" => Task::where('user_id', $user)->get()
         ]);
     }
 
     public function edit(Task $task)
     {
-        return view('edit-task', [
+        return view('tasks.edit', [
             'task' => $task
         ]);
     }
@@ -59,6 +58,8 @@ class TaskController extends Controller
         $update_data = [
             'user_id' => 1,
             'name' => $request->task_name,
+            'due_date' => $request->due_date,
+            'priority' => $request->priority,
             'description' => $request->task_desc
         ];
     
@@ -79,38 +80,5 @@ class TaskController extends Controller
     {
         $task->delete();
         return redirect('/');
-    }
-
-    public function pending_tasks()
-    {
-        return view('tasks', [
-            "tasks" => Task::where('status', 0)->filter(request()->only(['search', 'date']))->with('user')->orderBy("priority")->get(),
-            'allCount' => Task::count(),
-            'progressCount' => Task::where('status', 0)->count(),
-            'completeCount' => Task::where('status', 1)->count(),
-            'trashCount' => Task::where('status', 2)->count()
-        ]);
-    }
-
-    public function completed_tasks()
-    {
-        return view('tasks', [
-            "tasks" => Task::where('status', 1)->filter(request()->only(['search', 'date']))->with('user')->orderBy("priority")->get(),
-            'allCount' => Task::count(),
-            'progressCount' => Task::where('status', 0)->count(),
-            'completeCount' => Task::where('status', 1)->count(),
-            'trashCount' => Task::where('status', 2)->count()
-        ]);
-    }
-
-    public function trashed_tasks()
-    {
-        return view('tasks', [
-            "tasks" => Task::where('status', 2)->filter(request()->only(['search', 'date']))->with('user')->orderBy("priority")->get(),
-            'allCount' => Task::count(),
-            'progressCount' => Task::where('status', 0)->count(),
-            'completeCount' => Task::where('status', 1)->count(),
-            'trashCount' => Task::where('status', 2)->count()
-        ]);
     }
 }

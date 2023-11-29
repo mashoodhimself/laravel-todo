@@ -46,12 +46,7 @@
 
                             <div class="col-md-12 d-flex justify-content-between">
 
-                                <ul style="list-style: none;" >
-                                    <li><a class="{{ request()->routeIs('home') ? 'text-dark' : ''  }}"  href="/">All ({{ $allCount  }})</a></li>
-                                    <li><a class="{{ request()->routeIs('progress') ? 'text-dark' : ''  }}"  href="/progress">Progress ({{ $progressCount }})</a></li>
-                                    <li><a class="{{ request()->routeIs('completed') ? 'text-dark' : ''  }}" href="/completed">Completed ({{ $completeCount }})</a></li>
-                                    <li><a class="{{ request()->routeIs('trashed') ? 'text-dark' : ''  }}" href="/trashed">Trashed ({{ $trashCount  }})</a></li>
-                                </ul>
+                                <x-task-count-list />
 
                                 <div>
                                     <a href="/task/add">New Task</a>

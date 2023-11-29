@@ -29,6 +29,26 @@
                                     <textarea style="border-radius:0px;" name="task_desc" id="task_desc" cols="30" rows="10" class="form-control" placeholder="Task description">{{ $task->description }}</textarea>
                                 </div>
                             </div>
+
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <input type="date" name="due_date" id="due_date" class="form-control" value="{{ \Carbon\Carbon::parse($task->due_date)->format('Y-m-d') }}">
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
+
+                                <div class="col-md-12 d-flex">
+
+                                    <select name="priority" id="priority" class="form-control">
+                                        <option selected disabled>Select priority</option>
+                                        <option {{ $task->priority == 1 ? "selected" : "" }} value="1">High</option>
+                                        <option {{ $task->priority == 2 ? "selected" : "" }} value="2">Medium</option>
+                                        <option {{ $task->priority == 3 ? "selected" : "" }} value="3">Low</option>
+                                    </select>
+
+                                </div>
+                            </div>
             
                             <div class="row mt-2">
                                 <div class="col-md-12">
