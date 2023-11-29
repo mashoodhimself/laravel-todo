@@ -1,0 +1,25 @@
+.completed-state {
+    padding: 0px 10px;
+    background-color: rgb(71, 71, 252);
+    color: #fff;
+    border-radius: 10px;
+    margin-left: 5px; 
+}
+
+.pending-state {
+    padding: 0px 10px;
+    background: aquamarine;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+ul li {
+    display: inline-block;
+    margin-left: 10px;
+}
