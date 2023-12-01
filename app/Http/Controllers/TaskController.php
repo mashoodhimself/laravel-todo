@@ -15,7 +15,7 @@ class TaskController extends Controller
             "tasks" => Task::filter(request(['search', 'date', 'progress', 'completed', 'trashed']))
                             ->with('user')
                             ->orderBy("priority")
-                            ->get()
+                            ->paginate(5)
         ]);
     }
 

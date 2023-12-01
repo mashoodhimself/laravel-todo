@@ -96,7 +96,9 @@
             </div>
 
             <div class="card-footer">
-                Paginations
+                <div style="width: 20%; margin: 0px auto;" >
+                    {{ $tasks->links() }}
+                </div>
             </div>
     
         </div>
