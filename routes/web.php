@@ -5,6 +5,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\SessionController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +40,13 @@ Route::post('/edit/task/{task}', [TaskController::class, 'update']);
 Route::post('/trash/task/{task}', [TaskController::class, 'trash'])->name('trash');
 
 Route::post('/delete/task/{task}', [TaskController::class, 'destroy'])->name('destroy');
+
+Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
+
+Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+
+Route::get('login', [SessionController::class, 'create'])->middleware('guest');
+
+Route::post('login', [SessionController::class, 'store'])->middleware('guest');
+
+Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth');

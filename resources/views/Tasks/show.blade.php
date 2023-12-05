@@ -5,7 +5,22 @@
         <div class="card">
     
             <div class="card-header">
-               <strong>Tasks</strong>
+
+                <div class="d-flex justify-content-between" >
+                    <strong>Tasks</strong>
+                    <ul>
+                        @guest
+                            <li><a href="/register">Register</a></li>
+                            <li><a href="/login">Login</a></li>
+                        @endguest
+
+                        @auth
+                            <li> <form action="/logout" method="POST">@csrf <button type="submit" >Logout</button></form> </li>
+                        @endauth
+
+                    </ul>
+                </div>
+
             </div>
     
             <div class="card-body">
