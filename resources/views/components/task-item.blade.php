@@ -26,7 +26,7 @@
     <div class="col-md-8">
 
         <div>
-            <strong> {{$task->name}} </strong>
+            <strong><a href="/task/{{ $task->id }}">{{$task->name}}</a></strong>
         </div>
 
         <div> {{ Str::substr($task->description, 0, 70) }} </div>

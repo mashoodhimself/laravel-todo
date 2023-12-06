@@ -10,7 +10,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        return view('tasks.show', [
+        return view('tasks.index', [
 
             "tasks" => Task::filter(request(['search', 'date', 'progress', 'completed', 'trashed']))
                             ->with('user')
@@ -22,6 +22,13 @@ class TaskController extends Controller
     public function create()
     {
         return view('tasks.create');
+    }
+
+    public function show(Task $task)
+    {
+        return view('Tasks.show', [
+            'task' => $task
+        ]);
     }
 
     public function store(Request $request)

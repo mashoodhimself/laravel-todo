@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Note;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Task extends Model
 {
@@ -33,6 +34,11 @@ class Task extends Model
         $query->when($filters['trashed'] ?? false, function($query, $trashed) {
             $query->where('status', 2);
         });
+    }
+
+    public function note()
+    {
+        return $this->hasMany(Note::class);
     }
 
     public function user()

@@ -4,6 +4,7 @@ use App\Models\Task;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisterController;
@@ -30,6 +31,10 @@ Route::get('/trashed', [TaskController::class, 'trashed_tasks'])->name('trashed'
 Route::get('/task/add', [TaskController::class, 'create'] );
 
 Route::post('/task/add', [TaskController::class, 'store']);
+
+Route::get('/task/{task}', [TaskController::class, 'show'] );
+
+Route::post('/task/{task}/note', [NoteController::class, 'store']);
 
 Route::get('/task/author/{user}', [TaskController::class, 'task_by_author']);
 

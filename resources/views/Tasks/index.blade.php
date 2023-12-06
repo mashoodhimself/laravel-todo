@@ -73,80 +73,47 @@
 
                         <hr>
 
-                        <div class="row">
+                        @if ($tasks->count())
 
-                            <div class="col-md-12">
-                                {{ $task->name }}
+                            <div class="row">
+                
+                                <div class="col-md-12" style="display: flex;flex-direction: column;gap: 16px;">
+                
+                                    @foreach ($tasks as $task)
+        
+                                        <x-task-item :task="$task"  />
+        
+                                        @if (!$loop->last)
+                                        <hr>    
+                                        @endif
+        
+                                    @endforeach
+        
+                                </div>
+                
                             </div>
-                        </div>
+                            
+                        @else
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                {{ $task->description }}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    No Task exists
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                {{ $task->status }}
-                            </div>
-
-                            <div class="col-md-6">
-                                {{ $task->priority }}
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                {{ $task->due_date }}
-                            </div>
-                        </div>
-
-                        <div class="row mt-4 mb-4">
-                            <div class="col-md-12">
-
-                                <form action="/task/{{ $task->id }}/note" method="POST">
-
-                                    @csrf
-
-                                    <div class="form-group">
-                                        <textarea name="note" id="note" cols="30" rows="10" class="form-control" placeholder="Add your note here"></textarea>
-                                    </div>
-
-                                    @error('note')
-                                        <span class="text-danger" > {{ $message }} </span>
-                                    @enderror
-
-                                    <div class="form-group mt-2">
-                                        <button type="submit" class="btn btn-success">Add</button>
-                                    </div>
-                                    
-                                </form>
-
-                                
-
-                            </div>
-                        </div>
-
-                        @if (($task->note)->count())
-
-                            <h5 class="mt-3">Notes</h5>
-
-                            @foreach ($task->note as $note)
-                                <x-task-note :note="$note" />
-                            @endforeach
 
                         @endif
-
-
-                    
-
+    
+                        
                     </div>
     
                 </div>
     
+            </div>
+
+            <div class="card-footer">
+                <div style="width: 20%; margin: 0px auto;" >
+                    {{ $tasks->links() }}
+                </div>
             </div>
     
         </div>
