@@ -148,6 +148,38 @@
                 </div>
     
             </div>
+
+            <div class="card-footer">
+
+                <div class="row">
+
+                    <div class="col-md-12">
+
+                        <div style="max-width: 50%;margin: 0px auto;padding:10px;" class="text-center" >
+
+                            <h4 class="mb-3" >Subscribe to Our Newsletter</h4>
+                            <form action="/newsletter" method="POST">
+                                @csrf
+                                <input type="email" name="email" id="email" class="form-control">
+                                
+                                @error('email')
+                                    <small class="text-danger d-block mt-3"> {{ $message }} </small>
+                                @enderror
+
+                                
+                                <button class="btn btn-primary mt-3" type="submit">Subscribe</button>
+                            </form>
+
+                        </div>
+
+                        
+
+                    </div>
+
+                </div>
+
+
+            </div>
     
         </div>
     </div>
