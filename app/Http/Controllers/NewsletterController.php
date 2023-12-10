@@ -2,32 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Newsletter;
 use Illuminate\Http\Request;
 use MailchimpMarketing\ApiClient;
+use App\Services\MailChimpNewsletter;
 
 class NewsletterController extends Controller
 {
     
-    public function __invoke()
+    public function __invoke(Newsletter $newsletter)
     {
 
         request()->validate([
             'email' => 'required|email'
         ]);
     
-        $mailchimp = new ApiClient();
-    
-        $mailchimp->setConfig([
-            'apiKey' => config('services.mailchimp.key'),
-            'server' => 'us11'
-        ]);
-    
         try {
-    
-            return $mailchimp->lists->addListMember('d3c0c95629', [
-                'email_address' => request('email'),
-                'status' => 'subscribed'
-            ]);
+            
+            $newsletter->subscribe($email);
     
             return redirect('/')->with('success', 'Subscribed to newsletter successfully.');
     
