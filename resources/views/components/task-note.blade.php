@@ -6,7 +6,7 @@
 
         <span> Posted: {{ $note->created_at->diffForHumans() }} </span>
 
-        <div><a href="">Attachment</a></div>
+        <div><a href="{{ asset('storage/' . $note->attachment) }}">Attachment</a></div>
         
     </div>
 </div>

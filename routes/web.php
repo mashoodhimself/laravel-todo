@@ -31,7 +31,7 @@ Route::get('/completed', [TaskController::class, 'completed_tasks'])->name('comp
 
 Route::get('/trashed', [TaskController::class, 'trashed_tasks'])->name('trashed');
 
-Route::get('/task/add', [TaskController::class, 'create'] );
+Route::get('/task/add', [TaskController::class, 'create'])->middleware('admin');
 
 Route::post('/task/add', [TaskController::class, 'store']);
 

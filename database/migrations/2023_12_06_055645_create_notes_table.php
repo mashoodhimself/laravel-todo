@@ -18,6 +18,7 @@ class CreateNotesTable extends Migration
             $table->foreignId('task_id')->constrained()->cascadeOnDelete();
             // $table->unsignedBigInteger('post_id');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('attachment')->nullable();
             $table->text('body');
             $table->timestamps();
 

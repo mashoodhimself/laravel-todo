@@ -107,7 +107,7 @@
                         <div class="row mt-4 mb-4">
                             <div class="col-md-12">
 
-                                <form action="/task/{{ $task->id }}/note" method="POST">
+                                <form action="/task/{{ $task->id }}/note" method="POST" enctype="multipart/form-data">
 
                                     @csrf
 
@@ -117,6 +117,14 @@
 
                                     @error('note')
                                         <span class="text-danger" > {{ $message }} </span>
+                                    @enderror
+                                    
+                                    <div class="form-group mt-3">
+                                        <input type="file" name="attachment" id="attachment" class="form-control">
+                                    </div>
+
+                                    @error('attachment')
+                                        <span class="text-danger"> {{ $message }} </span>
                                     @enderror
 
                                     <div class="form-group mt-2">
